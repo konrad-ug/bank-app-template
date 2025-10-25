@@ -1,8 +1,5 @@
 class Account:
     express_outgoing_transfer_fee = 0.0
-    
-    def __init__(self):
-        self.balance = 0.0
         
     def incoming_transfer(self, amount):
         if amount > 0:

@@ -3,11 +3,11 @@ from src.personal_account import PersonalAccount
 
 class TestAccount:
     def test_account_creation(self):
-        account = PersonalAccount("John", "Doe", "12345678901")
+        account = PersonalAccount("John", "Doe", "89092909876")
         assert account.first_name == "John"
         assert account.last_name == "Doe"
         assert account.balance == 0.0
-        assert account.pesel == "12345678901"
+        assert account.pesel == "89092909876"
         
     def test_pesel_too_long(self):
         account = PersonalAccount("Jane", "Doe", "123456789013e23")
