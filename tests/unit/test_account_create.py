@@ -22,21 +22,33 @@ class TestAccount:
         assert account.pesel == "Invalid"
         
     def test_correct_promo_code(self):
-        account = PersonalAccount("Alice", "Smith", "12345678901", "PROM_123")
+        account = PersonalAccount("Alice", "Smith", "890929", "PROM_123")
         assert account.balance == 50.0
         
     def test_promo_code_suffix_too_long(self):
-        account = PersonalAccount("Alice", "Smith", "12345678901", "PROM_XYZZ")
+        account = PersonalAccount("Alice", "Smith", "89092909876", "PROM_XYZZ")
         assert account.balance == 0.0
         
     def test_promo_code_suffix_too_short(self):
-        account = PersonalAccount("Alice", "Smith", "12345678901", "PROM_XY")
+        account = PersonalAccount("Alice", "Smith", "89092909876", "PROM_XY")
         assert account.balance == 0.0
         
     def test_wrong_prefix_minus(self):
-        account = PersonalAccount("Alice", "Smith", "12345678901", "PROM-XYZ")
+        account = PersonalAccount("Alice", "Smith", "89092909876", "PROM-XYZ")
         assert account.balance == 0.0
 
     def test_wrong_prefix(self):
-        account = PersonalAccount("Alice", "Smith", "12345678901", "PPOM-XYZ")
+        account = PersonalAccount("Alice", "Smith", "89092909876", "PPOM-XYZ")
         assert account.balance == 0.0
+        
+    def test_promo_code_before_1960(self):
+        account = PersonalAccount("Bob", "Brown", "55010112345", "PROM_123")
+        assert account.balance == 0.0
+        
+    def test_promo_code_after_1960(self):
+        account = PersonalAccount("Bob", "Brown", "65010112345", "PROM_123")
+        assert account.balance == 50.0
+        
+    def test_promo_code_after_2000(self):
+        account = PersonalAccount("Charlie", "Davis", "02270712346", "PROM_123")
+        assert account.balance == 50.0
