@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -47,9 +47,10 @@ jobs:
         python3 -m coverage html
     - name: Commit coverage report
       if: always()
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: Update coverage report
-        file_pattern: htmlcov/**
+        file_pattern: htmlcov/*.*
+        create_branch: true
         branch: coverage-report
       
