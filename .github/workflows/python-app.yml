@@ -38,10 +38,12 @@ jobs:
       run: |
         python3 -m coverage run --source=src -m pytest
     - name: Coverage report
+      if: always()
       run: |
         python3 -m coverage report --fail-under=100
         python3 -m coverage html
     - name: Commit coverage report
+      if: always()
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update coverage report
