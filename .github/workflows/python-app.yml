@@ -41,6 +41,9 @@ jobs:
       if: always()
       run: |
         python3 -m coverage report --fail-under=100
+    - name: Generate coverage HTML
+      if: always()
+      run: |
         python3 -m coverage html
     - name: Commit coverage report
       if: always()
