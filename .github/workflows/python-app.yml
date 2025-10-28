@@ -47,6 +47,6 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update coverage report
-        file_pattern: coverage_html_report/
+        file_pattern: htmlcov/**
         branch: coverage-report
       
