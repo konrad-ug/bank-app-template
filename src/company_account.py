@@ -4,6 +4,7 @@ class CompanyAccount(Account):
     express_outgoing_transfer_fee = 5.0
     
     def __init__(self, company_name: str, nip: str):
+        super().__init__()
         self.name = company_name
         self.nip = nip if self.is_nip_valid(nip) else "Invalid"
         self.balance = 0.0
