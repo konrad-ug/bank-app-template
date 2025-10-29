@@ -13,3 +13,4 @@ class CompanyAccount(Account):
         if isinstance(nip, str) and len(nip) == 10 and nip.isdigit():
             return True
         return False
+
