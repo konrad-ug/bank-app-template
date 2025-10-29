@@ -41,6 +41,7 @@ jobs:
       run: |
         python3 -m coverage report --fail-under=100
     - name: Get AI code review
+      if: always()
       uses: fxchen/code-review@latest
       with:
         model: 'gpt-3.5-turbo-16k'
