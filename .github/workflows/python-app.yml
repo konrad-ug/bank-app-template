@@ -42,7 +42,7 @@ jobs:
         python3 -m coverage report --fail-under=100
     - name: Get AI code review
       if: always()
-      uses: fxchen/code-review@latest
+      uses: sshnaidm/gpt-code-review-action@v3.0
       with:
         model: 'gpt-3.5-turbo-16k'
         openai-key: ${{ secrets.OPENAI_API_KEY }}
