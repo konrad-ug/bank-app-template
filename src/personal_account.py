@@ -3,13 +3,16 @@ from src.account import Account
 
 class PersonalAccount(Account):
     express_outgoing_transfer_fee = 1.0
+    history_email_text_template = "Personal account history:"
     
     def __init__(self, first_name, last_name, pesel, promo_code=None):
         super().__init__()
+        self.list_on_self = []
         self.first_name = first_name
         self.last_name = last_name
         self.pesel = pesel if self.is_pesel_valid(pesel) else "Invalid"
         self.balance = 50 if self.check_promotion_eligibility(pesel, promo_code) else 0.0
+        self.history = []
         
     def is_pesel_valid(self, pesel):
         if isinstance(pesel, str) and len(pesel) == 11:
@@ -35,3 +38,18 @@ class PersonalAccount(Account):
         elif 21 <= month <= 32:
             year += 2000
         return year > 1960
+    
+    def submit_for_loan(self, amount):
+        if len(self.history) < 3:
+            return False
+        if self.history[-3] > 0 and self.history[-2] > 0 and self.history[-1] > 0:
+            self.balance += amount
+            return True
+        if len(self.history) < 5:
+            return False
+        if sum(self.history[-5:]) > amount:
+            self.balance += amount
+            return True
+        return False
+        
+    
