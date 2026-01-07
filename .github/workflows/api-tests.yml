@@ -35,6 +35,6 @@ jobs:
         flask run &
     - name: Execute API tests
       run: |
-        python3 -m coverage run --source=src -m pytest tests/api
+        python3 -m pytest tests/api
 
 

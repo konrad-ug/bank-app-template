@@ -1,5 +1,5 @@
 from datetime import datetime
-from lib.smtp import SMTPClient
+from smtp.smtp import SMTPClient
 
 
 class Account:
