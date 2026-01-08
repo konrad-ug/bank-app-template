@@ -22,7 +22,7 @@ class PerfTest(unittest.TestCase):
 
 
     def test_create_delete_perf_test(self):
-        for i in range(self.iteration_count):
+        for _ in range(self.iteration_count):
             create_response = requests.post(self.url, json=self.body, timeout=self.timeout)
             assert create_response.status_code == 201
             delete_respone = requests.delete(f"{self.url}/{self.body['pesel']}", timeout=self.timeout)
@@ -41,7 +41,7 @@ class PerfTest(unittest.TestCase):
     def test_transfer_perf(self):
         create_response = requests.post(self.url, json=self.body, timeout=1)
         assert create_response.status_code == 201
-        for i in range(self.iteration_count):
+        for _ in range(self.iteration_count):
             transfer_response = requests.post(f"{self.url}/{self.body['pesel']}/transfer",
                                               json={"type": "incoming", "amount": 100}, timeout=self.timeout)
             assert transfer_response.status_code == 200
